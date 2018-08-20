@@ -4,24 +4,28 @@
 - 下载安装 [vagrant 2.1.2 for OSX](https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.dmg) 
 
 ## 启动vagrant初始化VM
-clone 代码仓库
+1. clone 代码仓库
 ```
 git clone https://github.com/iasonliu/kubernetes101-workshop.git
 cd kubernetes101-workshop
 ```
-使用vagrant 启动VM
+2. 使用vagrant 启动VM
 ```
 # 在 kubernetes101-workshop 目录下执行
 vagrant up
 ```
-vagrant 会下载系统镜像，更新系统，安装docker，和一些必要的kubernetes软件可能会持续很久... 请保持一个良好的网络环境
+vagrant 会下载系统镜像，更新系统，安装docker，和一些必要的kubernetes软件可能会持续很久...
+
+请保持一个良好的网络环境
 
 > Notes： 如果vagrant 初始化中途网络中断
+> 
 > 在下载box阶段可以直接 `vagrant up` 重新下载 box
+> 
 > 在shell脚本安装初始化系统阶段，可以使用 `vagrant up --provision` 重新初始化
 
 
-初始化完成后验证
+3. 初始化完成后验证
 ```
 # 查询VM状态
 $ vagrant status
