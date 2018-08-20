@@ -24,9 +24,9 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg \
 apt-get update -y
 apt-get upgrade -y
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-apt-get install docker-ce=18.03.0~ce-0~ubuntu -y --allow-downgrades
+apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
 apt-get install -y kubeadm kubelet kubectl
-sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+sudo sed -i '/^\/dev\/mapper\/vagrant\-\-vg\-swap\_1.*/d' /etc/fstab
 sed -i '0,/ExecStart=/s//Environment="KUBELET_EXTRA_ARGS=--cgroup-driver=cgroupfs"\n&/' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 modprobe br_netfilter
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
