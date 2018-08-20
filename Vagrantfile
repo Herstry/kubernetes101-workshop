@@ -28,7 +28,7 @@ apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
 apt-get install -y kubeadm kubelet kubectl ipvsadm
 sudo sed -i '/^\/dev\/mapper\/vagrant\-\-vg\-swap.*/d' /etc/fstab
 IPADDR=`ifconfig eth1 | grep Mask | awk '{print $2}'| cut -f2 -d:`
-echo "Environment=\"KUBELET_EXTRA_ARGS=--node-ip=$IPADDR  --cgroup-driver=cgroupfs\"" >> /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+echo "KUBELET_EXTRA_ARGS=--node-ip=$IPADDR" > /etc/default/kubelet
 modprobe br_netfilter
 modprobe ip_vs_dh
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
