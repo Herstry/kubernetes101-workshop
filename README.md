@@ -20,9 +20,9 @@ vagrant 会下载系统镜像，更新系统，安装docker，和一些必要的
 
 > Notes： 如果vagrant 初始化中途网络中断
 > 
-> 在下载box阶段可以直接 `vagrant up` 重新下载 box
+> 在下载box阶段中断可以直接 `vagrant up` 重新下载 box
 > 
-> 在shell脚本安装初始化系统阶段，可以使用 `vagrant up --provision` 重新初始化
+> 在shell脚本安装初始化系统阶段中断，可以使用 `vagrant up --provision` 重新初始化
 
 
 3. 初始化完成后验证
