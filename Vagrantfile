@@ -26,13 +26,18 @@ apt-get upgrade -y
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
 apt-get install -y kubeadm kubelet kubectl ipvsadm
-sudo sed -i '/^\/dev\/mapper\/vagrant\-\-vg\-swap.*/d' /etc/fstab
+
+sed -i '/swap/d' /etc/fstab
 IPADDR=`ifconfig eth1 | grep Mask | awk '{print $2}'| cut -f2 -d:`
 echo "KUBELET_EXTRA_ARGS=--node-ip=$IPADDR" > /etc/default/kubelet
+
 modprobe br_netfilter
 modprobe ip_vs_dh
+modprobe br_netfilter >> rc.local
+modprobe ip_vs_dh >> rc.local
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
-
+echo 'net.bridge.bridge-nf-call-iptables = 1' >> /etc/sysctl.conf
+sysctl -p
 cat > /etc/hosts << EOF
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 192.168.33.101 master01
