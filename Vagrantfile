@@ -33,8 +33,10 @@ echo "KUBELET_EXTRA_ARGS=--node-ip=$IPADDR" > /etc/default/kubelet
 
 modprobe br_netfilter
 modprobe ip_vs_dh
+modprobe nf_conntrack_ipv4
 modprobe br_netfilter >> rc.local
 modprobe ip_vs_dh >> rc.local
+modprobe nf_conntrack_ipv4  >> rc.local
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
 echo 'net.bridge.bridge-nf-call-iptables = 1' >> /etc/sysctl.conf
 sysctl -p
