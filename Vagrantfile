@@ -22,7 +22,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg \
        | apt-key add -
 apt-get update -y
-apt-get upgrade -y
+#apt-get upgrade -y
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
 apt-get install -y kubeadm kubelet kubectl ipvsadm
