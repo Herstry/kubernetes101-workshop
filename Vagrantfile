@@ -10,17 +10,14 @@ $script = <<SCRIPT
 swapoff -a
 echo "root:root" | chpasswd
 
-cat > /etc/apt/sources.list.d/kubernetes.list << EOF
-deb http://apt.kubernetes.io/ kubernetes-xenial main
+curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
+cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
 EOF
-add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg \
-       | apt-key add -
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+
 apt-get update -y
 #apt-get upgrade -y
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
@@ -62,6 +59,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provision "shell", inline: $script
       machine.vm.provider "virtualbox" do |v|
           v.name = name
+          v.customize ["modifyvm", :id, "--cpus", 2]
           v.customize ["modifyvm", :id, "--memory", 4048]
       end
     end
