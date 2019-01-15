@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-otr-deployment-v2
+spec:
+  selector:
+    matchLabels:
+      app: hello-v2
+  replicas: 1
+  template:
+    metadata:
+      name: hello-otr-v2
+      labels:
+        app: hello-v2
+    spec:
+      containers:
+      - name: hello-otr
+        image: lotusp/hello-world-of-node:1.1
+        ports:
+          - containerPort: 8080
+        env:
+          - name: THE_NAME
+            value: "WORLD"
+          - name: CONTAINER_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name

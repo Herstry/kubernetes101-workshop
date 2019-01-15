@@ -18,8 +18,8 @@ EOF
 curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 
-apt-get update -y
-#apt-get upgrade -y
+apt-get update -y -qq
+apt-get upgrade -y -qq
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
 apt-get install -y kubeadm kubelet kubectl ipvsadm
