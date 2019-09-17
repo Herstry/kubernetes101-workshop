@@ -22,7 +22,7 @@ apt-get update -y -qq
 apt-get upgrade -y -qq
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
-apt-get install -y kubeadm kubelet kubectl ipvsadm
+apt-get install -y kubeadm kubelet kubectl ipvsadm jq
 
 sed -i '/swap/d' /etc/fstab
 IPADDR=`ifconfig eth1 | grep Mask | awk '{print $2}'| cut -f2 -d:`
