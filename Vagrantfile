@@ -3,7 +3,8 @@
 
 hosts = {
 	"master01" => "192.168.33.101",
-	"node01" => "192.168.33.110"
+	"node01" => "192.168.33.110",
+	"node02" => "192.168.33.111"
 }
 
 $script = <<SCRIPT
@@ -22,7 +23,7 @@ apt-get update -y -qq
 apt-get upgrade -y -qq
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
-apt-get install -y kubeadm kubelet kubectl ipvsadm jq
+apt-get install -y kubeadm=1.15.3-00 kubelet=1.15.3-00 kubectl=1.15.3-00 ipvsadm jq -y --allow-downgrades
 
 sed -i '/swap/d' /etc/fstab
 IPADDR=`ifconfig eth1 | grep Mask | awk '{print $2}'| cut -f2 -d:`

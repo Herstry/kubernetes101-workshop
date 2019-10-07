@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hasher
+spec:
+  selector:
+    app: hasherapp
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hasher-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hasherapp
+  template:
+    metadata:
+      labels:
+        app: hasherapp
+    spec:
+      containers:
+      - name: hasher
+        image: 127.0.0.1:30210/hasher
+        imagePullPolicy: IfNotPresent
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 80
