@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rng-ingress
+spec:
+  rules:
+  - host: rng.192.168.33.101.nip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rng
+          servicePort: 80

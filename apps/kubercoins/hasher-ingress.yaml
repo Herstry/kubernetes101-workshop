@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hasher-ingress
+spec:
+  rules:
+  - host: hasher.192.168.33.101.nip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hasher
+          servicePort: 80
