@@ -75,9 +75,4 @@ vagrant up node01
 vagrant destroy
 ```
 
-通用的仓库
-harbor
-nexus
-
-master node can config `Taints` parameters to make it schedualbale or not.
 

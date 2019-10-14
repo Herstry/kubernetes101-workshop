@@ -3,8 +3,8 @@
 
 hosts = {
 	"master01" => "192.168.33.101",
-	"node01" => "192.168.33.110",
-	"node02" => "192.168.33.111"
+  "node01" => "192.168.33.110",
+  "node02" => "192.168.33.111",
 }
 
 $script = <<SCRIPT
@@ -23,7 +23,7 @@ apt-get update -y -qq
 apt-get upgrade -y -qq
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial -y --allow-downgrades
-apt-get install -y kubeadm=1.15.3-00 kubelet=1.15.3-00 kubectl=1.15.3-00 ipvsadm jq -y --allow-downgrades
+apt-get install kubeadm=1.15.3-00 kubelet=1.15.3-00 kubectl=1.15.3-00 ipvsadm jq -y --allow-downgrades
 
 sed -i '/swap/d' /etc/fstab
 IPADDR=`ifconfig eth1 | grep Mask | awk '{print $2}'| cut -f2 -d:`
@@ -42,6 +42,7 @@ cat > /etc/hosts << EOF
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 192.168.33.101 master01
 192.168.33.110 node01
+192.168.33.111 node02
 EOF
 
 docker version
@@ -60,8 +61,8 @@ Vagrant.configure("2") do |config|
       machine.vm.provision "shell", inline: $script
       machine.vm.provider "virtualbox" do |v|
           v.name = name
-          v.customize ["modifyvm", :id, "--cpus", 2]
-          v.customize ["modifyvm", :id, "--memory", 4048]
+          v.customize ["modifyvm", :id, "--cpus", 3]
+          v.customize ["modifyvm", :id, "--memory", 6048]
       end
     end
   end
