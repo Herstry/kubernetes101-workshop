@@ -75,4 +75,6 @@ vagrant up node01
 vagrant destroy
 ```
 
-
+通用的仓库
+harbor
+nexus
