@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: webui-ingress
+spec:
+  rules:
+  - host: webui.192.168.33.101.nip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: webui
+          servicePort: 80

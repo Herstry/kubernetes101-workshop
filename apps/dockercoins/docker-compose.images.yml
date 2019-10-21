@@ -15,7 +15,7 @@ services:
 
   webui:
     build: webui
-    image: ${REGISTRY_SLASH}webui${COLON_TAG}
+    image: ${REGISTRY_SLASH}webui:v0.2
     ports:
     - "8000:80"
     volumes:
